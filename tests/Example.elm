@@ -44,4 +44,22 @@ suite =
                     Expect.equal Right moveMode
                 )
             ]
+        , describe "getOperator"
+            [ test "Leftを渡すと(-)が返る"
+                (\_ ->
+                    let
+                        operator =
+                            getOperator Left
+                    in
+                    Expect.equal (-) operator
+                )
+            , test "Rightを渡すと(+)が返る"
+                (\_ ->
+                    let
+                        operator =
+                            getOperator Right
+                    in
+                    Expect.equal (+) operator
+                )
+            ]
         ]
