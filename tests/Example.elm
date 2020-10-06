@@ -1,7 +1,6 @@
 module Example exposing (..)
 
 import Expect exposing (Expectation)
-import Fuzz exposing (Fuzzer, int, list, string)
 import Main exposing (..)
 import Test exposing (..)
 
@@ -25,6 +24,24 @@ suite =
                             getLightColor LightOff
                     in
                     Expect.equal "white" colorString
+                )
+            ]
+        , describe "invertMode"
+            [ test "Rightを渡すとLeftが返る"
+                (\_ ->
+                    let
+                        moveMode =
+                            invertMoveMode Right
+                    in
+                    Expect.equal Left moveMode
+                )
+            , test "Leftを渡すとRightが返る"
+                (\_ ->
+                    let
+                        moveMode =
+                            invertMoveMode Left
+                    in
+                    Expect.equal Right moveMode
                 )
             ]
         ]
