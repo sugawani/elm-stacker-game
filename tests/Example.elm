@@ -62,4 +62,70 @@ suite =
                     Expect.equal (+) operator
                 )
             ]
+        , describe "moveLightPoints"
+            [ describe "Right"
+                [ test "yが+1される"
+                    (\_ ->
+                        let
+                            movedLightPoints =
+                                moveLightPoints [ { x = 0, y = 0 } ] Right
+                        in
+                        Expect.equal [ { x = 0, y = 1 } ] movedLightPoints
+                    )
+                , test "複数Pointがある場合はそれぞれyが+1される"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 0 }, { x = 0, y = 1 } ]
+
+                            movedLightPoints =
+                                moveLightPoints lightPoints Right
+
+                            expectLightPoints =
+                                [ { x = 0, y = 1 }, { x = 0, y = 2 } ]
+                        in
+                        Expect.equal expectLightPoints movedLightPoints
+                    )
+                , test "配列が空の場合は処理しない"
+                    (\_ ->
+                        let
+                            movedLightPoints =
+                                moveLightPoints [] Right
+                        in
+                        Expect.equal [] movedLightPoints
+                    )
+                ]
+            , describe "Left"
+                [ test "yが-1される"
+                    (\_ ->
+                        let
+                            movedLightPoints =
+                                moveLightPoints [ { x = 0, y = 0 } ] Left
+                        in
+                        Expect.equal [ { x = 0, y = -1 } ] movedLightPoints
+                    )
+                , test "複数Pointがある場合はそれぞれyが-1される"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 0 }, { x = 0, y = 1 } ]
+
+                            movedLightPoints =
+                                moveLightPoints lightPoints Left
+
+                            expectLightPoints =
+                                [ { x = 0, y = -1 }, { x = 0, y = 0 } ]
+                        in
+                        Expect.equal expectLightPoints movedLightPoints
+                    )
+                , test "配列が空の場合は処理しない"
+                    (\_ ->
+                        let
+                            movedLightPoints =
+                                moveLightPoints [] Left
+                        in
+                        Expect.equal [] movedLightPoints
+                    )
+                ]
+            ]
         ]
