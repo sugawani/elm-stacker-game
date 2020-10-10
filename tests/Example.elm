@@ -26,7 +26,7 @@ suite =
                     Expect.equal "white" colorString
                 )
             ]
-        , describe "invertMode"
+        , describe "invertMoveMode"
             [ test "Rightを渡すとLeftが返る"
                 (\_ ->
                     let
