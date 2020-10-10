@@ -3,6 +3,8 @@ module Example exposing (..)
 import Expect exposing (Expectation)
 import Main exposing (..)
 import Test exposing (..)
+import Test.Html.Query as Query
+import Test.Html.Selector as Selector
 
 
 suite : Test
@@ -201,6 +203,56 @@ suite =
                                 getMoveMode Left lightPoints
                         in
                         Expect.equal Left moveMode
+                    )
+                ]
+            , describe "showBox"
+                [ test "LightOnの場合background-color redであること"
+                    (\_ ->
+                        let
+                            dummyPoint =
+                                { x = 0, y = 0 }
+
+                            dummyBox =
+                                { point = dummyPoint, lightMode = LightOn }
+
+                            box =
+                                showBox dummyBox
+                        in
+                        box
+                            |> Query.fromHtml
+                            |> Query.has [ Selector.style "background-color" "red" ]
+                    )
+                , test "LightOffの場合background-color whiteであること"
+                    (\_ ->
+                        let
+                            dummyPoint =
+                                { x = 0, y = 0 }
+
+                            dummyBox =
+                                { point = dummyPoint, lightMode = LightOff }
+
+                            box =
+                                showBox dummyBox
+                        in
+                        box
+                            |> Query.fromHtml
+                            |> Query.has [ Selector.style "background-color" "white" ]
+                    )
+                , test "class Boxを持っていること"
+                    (\_ ->
+                        let
+                            dummyPoint =
+                                { x = 0, y = 0 }
+
+                            dummyBox =
+                                { point = dummyPoint, lightMode = LightOn }
+
+                            box =
+                                showBox dummyBox
+                        in
+                        box
+                            |> Query.fromHtml
+                            |> Query.has [ Selector.class "box" ]
                     )
                 ]
             ]
