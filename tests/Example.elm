@@ -127,81 +127,81 @@ suite =
                         Expect.equal [] movedLightPoints
                     )
                 ]
-            , describe "getMoveMode"
-                [ describe "Right"
-                    [ test "配列が空の場合Rightが返る"
-                        (\_ ->
-                            let
-                                moveMode =
-                                    getMoveMode Right []
-                            in
-                            Expect.equal Right moveMode
-                        )
-                    , test "headのyが5の場合Leftが返る"
-                        (\_ ->
-                            let
-                                lightPoints =
-                                    [ { x = 0, y = 5 }
-                                    , { x = 0, y = 0 }
-                                    ]
+            ]
+        , describe "getMoveMode"
+            [ describe "Right"
+                [ test "配列が空の場合Rightが返る"
+                    (\_ ->
+                        let
+                            moveMode =
+                                getMoveMode Right []
+                        in
+                        Expect.equal Right moveMode
+                    )
+                , test "headのyが5の場合Leftが返る"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 5 }
+                                , { x = 0, y = 0 }
+                                ]
 
-                                moveMode =
-                                    getMoveMode Right lightPoints
-                            in
-                            Expect.equal Left moveMode
-                        )
-                    , test "head以外のyが5だとLeftにならない"
-                        (\_ ->
-                            let
-                                lightPoints =
-                                    [ { x = 0, y = 4 }
-                                    , { x = 0, y = 5 }
-                                    , { x = 0, y = 5 }
-                                    ]
+                            moveMode =
+                                getMoveMode Right lightPoints
+                        in
+                        Expect.equal Left moveMode
+                    )
+                , test "head以外のyが5だとLeftにならない"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 4 }
+                                , { x = 0, y = 5 }
+                                , { x = 0, y = 5 }
+                                ]
 
-                                moveMode =
-                                    getMoveMode Right lightPoints
-                            in
-                            Expect.equal Right moveMode
-                        )
-                    ]
-                , describe "Left"
-                    [ test "配列が空の場合Leftが返る"
-                        (\_ ->
-                            let
-                                moveMode =
-                                    getMoveMode Left []
-                            in
-                            Expect.equal Left moveMode
-                        )
-                    , test "tailのyが1の場合Rightが返る"
-                        (\_ ->
-                            let
-                                lightPoints =
-                                    [ { x = 0, y = 0 }
-                                    , { x = 0, y = 1 }
-                                    ]
+                            moveMode =
+                                getMoveMode Right lightPoints
+                        in
+                        Expect.equal Right moveMode
+                    )
+                ]
+            , describe "Left"
+                [ test "配列が空の場合Leftが返る"
+                    (\_ ->
+                        let
+                            moveMode =
+                                getMoveMode Left []
+                        in
+                        Expect.equal Left moveMode
+                    )
+                , test "tailのyが1の場合Rightが返る"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 0 }
+                                , { x = 0, y = 1 }
+                                ]
 
-                                moveMode =
-                                    getMoveMode Left lightPoints
-                            in
-                            Expect.equal Right moveMode
-                        )
-                    , test "tail以外のyが1だとRightにならない"
-                        (\_ ->
-                            let
-                                lightPoints =
-                                    [ { x = 0, y = 1 }
-                                    , { x = 0, y = 1 }
-                                    , { x = 0, y = 0 }
-                                    ]
+                            moveMode =
+                                getMoveMode Left lightPoints
+                        in
+                        Expect.equal Right moveMode
+                    )
+                , test "tail以外のyが1だとRightにならない"
+                    (\_ ->
+                        let
+                            lightPoints =
+                                [ { x = 0, y = 1 }
+                                , { x = 0, y = 1 }
+                                , { x = 0, y = 0 }
+                                ]
 
-                                moveMode =
-                                    getMoveMode Left lightPoints
-                            in
-                            Expect.equal Left moveMode
-                        )
-                    ]
+                            moveMode =
+                                getMoveMode Left lightPoints
+                        in
+                        Expect.equal Left moveMode
+                    )
                 ]
             ]
         ]
